@@ -1,14 +1,14 @@
-import Image from "next/image";
-import avatar from "../../assets/img/avatar.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCalculator,
   faGift,
-  faLocation,
   faLock,
   faStar,
-  faUser,
+  faUser
 } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Image from "next/image";
+import Link from "next/link";
+import avatar from "../../assets/img/avatar.png";
 
 const UserSidbar = () => {
   return (
@@ -18,14 +18,14 @@ const UserSidbar = () => {
         <h1 className=" font-semibold text-2xl ">David Warrior</h1>
       </div>
       <div className="grid grid-cols-1 pl-8 pt-8 ">
-        <a href="/userdashboard" className="flex gap-4 items-center mt-4  ">
+        <Link href="/userdashboard" className="flex gap-4 items-center mt-4  ">
           <FontAwesomeIcon
             icon={faCalculator}
             className="p-4 rounded-full bg-[#F3E6EC] text-[#ED0027]"
           />
           <h1>Dashboard</h1>
-        </a>
-        <a
+        </Link>
+        <Link
           href="/userdashboard/editprofile"
           className="flex gap-4 items-center mt-4  "
         >
@@ -34,7 +34,7 @@ const UserSidbar = () => {
             className="p-4 rounded-full bg-[#F3E6EC] text-[#ED0027]"
           />
           <h1>Edit Profile</h1>
-        </a>
+        </Link>
         <a href="" className="flex gap-4 items-center mt-4  ">
           <FontAwesomeIcon
             icon={faGift}

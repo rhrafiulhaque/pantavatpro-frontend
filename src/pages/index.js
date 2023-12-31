@@ -2,6 +2,7 @@ import RootLayout from "@/components/Layouts/RootLayout";
 import Banner from '@/components/homePage/Banner';
 import Categories from '@/components/homePage/Categories';
 import FullMenu from '@/components/homePage/FullMenu';
+import OurDishes from "@/components/homePage/OurDishes";
 import ReviewsSection from '@/components/homePage/ReviewsSection';
 import ScheduleTable from '@/components/homePage/ScheduleTable';
 import SurveySection from '@/components/homePage/ServeySection';
@@ -16,6 +17,7 @@ const HomePage = () => {
 
       <Banner />
       <WhyUs />
+      <OurDishes />
       <Categories />
       <FullMenu />
       <ReviewsSection />
