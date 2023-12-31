@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { useGetFoodsQuery } from '@/features/food/foodApi';
 import PrimaryButton from '../PrimaryButton';
 import ProductRatings from '../productRatings';
