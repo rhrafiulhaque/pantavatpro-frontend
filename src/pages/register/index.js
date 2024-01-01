@@ -1,14 +1,35 @@
 import RootLayout from '@/components/Layouts/RootLayout';
+import Loading from '@/components/shared/Loading';
+import { useCreateUserMutation } from '@/features/user/userApi';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 const RegisterForm = () => {
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const [createUser, { isLoading, isSuccess, isError, error }] = useCreateUserMutation()
+
+
+
+
     const onSubmit = async (data) => {
-        console.log(data)
+        await createUser(data);
     }
 
 
+    useEffect(() => {
+        if (isSuccess) {
+            toast.success('User Register Successfully')
+        }
+    }, [isSuccess])
+
+    if (isLoading) {
+        return <Loading />
+    }
+    if (isError) {
+        toast.error(error?.data.message)
+    }
     return (
         <div className='container py-16'>
             <div className='mx-auto max-w-lg shadow px-6 py-7 rounded overflow-hidden'>

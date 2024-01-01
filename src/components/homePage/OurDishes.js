@@ -7,7 +7,6 @@ import Loading from '../shared/Loading';
 const OurDishes = () => {
     let content = null;
     const { data: foods, isLoading, error, isError } = useGetFoodsQuery();
-    console.log(foods)
     if (isLoading) {
         return <Loading />
     }

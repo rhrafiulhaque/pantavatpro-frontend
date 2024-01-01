@@ -1,9 +1,21 @@
+import useAuth from '@/hooks/useAuth';
 import { faCartShopping, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import logo from '../../assets/logo.png';
 
 const Navbar = () => {
+    const { status } = useAuth();
+    const [haveUser, setHaveUser] = useState(false)
+
+    useEffect(() => {
+        if (status) {
+            setHaveUser(true);
+        }
+
+    }, [status])
     return (
         <div className='container mx-auto mt-5 flex justify-between align-middle content-center items-center'>
             <a href="\"> <Image src={logo} alt="Logo" className='w-20 ' /></a>
@@ -25,8 +37,16 @@ const Navbar = () => {
 
             <div className='flex  gap-6 items-center'>
                 <FontAwesomeIcon icon={faCartShopping} className='text-2xl' />
-                <button className='px-4 py-2 border border-[#FF5331] rounded-full font-semibold hover:bg-[#FF5331] hover:text-white transition duration-300 '><a href="/login">Login</a></button>
-                <a className='px-4 py-2 border bg-[#FF5331] border-[#FF5331] rounded-full font-semibold text-white hover:text-[#FF5331] hover:bg-transparent transition duration-300' href="/register">Sign Up</a>
+                {
+                    haveUser ? <>
+                        <button className='px-4 py-2 border border-[#FF5331] rounded-full font-semibold hover:bg-[#FF5331] hover:text-white transition duration-300 '><Link href="/login">Khela HObe</Link></button>
+                        <Link className='px-4 py-2 border bg-[#FF5331] border-[#FF5331] rounded-full font-semibold text-white hover:text-[#FF5331] hover:bg-transparent transition duration-300' href="/register">Thank you</Link>
+
+                    </> : <>
+                        <button className='px-4 py-2 border border-[#FF5331] rounded-full font-semibold hover:bg-[#FF5331] hover:text-white transition duration-300 '><Link href="/login">Login</Link></button>
+                        <Link className='px-4 py-2 border bg-[#FF5331] border-[#FF5331] rounded-full font-semibold text-white hover:text-[#FF5331] hover:bg-transparent transition duration-300' href="/register">Sign Up</Link>
+                    </>
+                }
             </div>
         </div>
     );

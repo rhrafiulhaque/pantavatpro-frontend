@@ -22,8 +22,6 @@ const ReviewsSection = () => {
                     spaceBetween={80}
                     slidesPerView={3}
                     navigation
-                    onSlideChange={() => console.log("slide change")}
-                    onSwiper={(swiper) => console.log(swiper)}
                 >
                     <SwiperSlide>
                         <div className="space-y-2  shadow text-center">
