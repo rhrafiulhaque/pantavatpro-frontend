@@ -2,6 +2,7 @@ import {
     faBowlFood,
     faCalculator,
     faGift,
+    faList,
     faLock,
     faStar,
     faUser
@@ -46,6 +47,16 @@ const AdminSidebar = () => {
                         className="p-4 rounded-full bg-[#F3E6EC] text-[#ED0027]"
                     />
                     <h1>Add Food</h1>
+                </Link>
+                <Link
+                    href="/admin/addcategory"
+                    className="flex gap-4 items-center mt-4  "
+                >
+                    <FontAwesomeIcon
+                        icon={faList}
+                        className="p-4 rounded-full bg-[#F3E6EC] text-[#ED0027]"
+                    />
+                    <h1>Add Category</h1>
                 </Link>
                 <a href="" className="flex gap-4 items-center mt-4  ">
                     <FontAwesomeIcon

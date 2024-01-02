@@ -5,9 +5,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import logo from '../../assets/logo.png';
+import UserFlip from '../homePage/UserFlip';
 
 const Navbar = () => {
     const { status } = useAuth();
+    console.log(status)
     const [haveUser, setHaveUser] = useState(false)
 
     useEffect(() => {
@@ -38,11 +40,7 @@ const Navbar = () => {
             <div className='flex  gap-6 items-center'>
                 <FontAwesomeIcon icon={faCartShopping} className='text-2xl' />
                 {
-                    haveUser ? <>
-                        <button className='px-4 py-2 border border-[#FF5331] rounded-full font-semibold hover:bg-[#FF5331] hover:text-white transition duration-300 '><Link href="/login">Khela HObe</Link></button>
-                        <Link className='px-4 py-2 border bg-[#FF5331] border-[#FF5331] rounded-full font-semibold text-white hover:text-[#FF5331] hover:bg-transparent transition duration-300' href="/register">Thank you</Link>
-
-                    </> : <>
+                    haveUser ? <UserFlip /> : <>
                         <button className='px-4 py-2 border border-[#FF5331] rounded-full font-semibold hover:bg-[#FF5331] hover:text-white transition duration-300 '><Link href="/login">Login</Link></button>
                         <Link className='px-4 py-2 border bg-[#FF5331] border-[#FF5331] rounded-full font-semibold text-white hover:text-[#FF5331] hover:bg-transparent transition duration-300' href="/register">Sign Up</Link>
                     </>

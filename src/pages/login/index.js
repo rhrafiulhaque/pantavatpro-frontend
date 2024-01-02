@@ -1,40 +1,39 @@
 import RootLayout from '@/components/Layouts/RootLayout';
 import Loading from '@/components/shared/Loading';
-import { addAuth } from '@/features/auth/authSlice';
 import { useLogInMutation } from '@/features/user/userApi';
-import { jwtDecode } from 'jwt-decode';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const [logIn, { isSuccess, isError, error, isLoading }] = useLogInMutation()
 
-    const dispatch = useDispatch()
+
 
     const onSubmit = async (data) => {
         const userInfo = await logIn(data);
         localStorage.setItem('accessToken', userInfo?.data?.data?.accessToken)
-        const accessToken = userInfo?.data?.data?.accessToken;
-        const userDetails = jwtDecode(accessToken);
-        await dispatch(addAuth({ accessToken, userDetails }))
     }
 
     useEffect(() => {
         if (isSuccess) {
             toast.success('User Successfully Logged In')
         }
-    })
+    }, [isSuccess])
+
+
+    useEffect(() => {
+        if (isError) {
+            toast.error(error?.data?.message)
+        }
+    }, [isError, error?.data?.message])
 
     if (isLoading) {
         return <Loading />
     }
 
-    if (isError) {
-        toast.error(error?.data?.message)
-    }
+
 
 
     return (

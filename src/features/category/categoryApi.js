@@ -1,25 +1,22 @@
 import { apiSlice } from "../api/apiSlice";
 
-export const foodApi = apiSlice.injectEndpoints({
+export const categoryApi = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
-        getFoods: builder.query({
-            query: () => '/foods/get-all-foods',
-            providesTags: ["getAllfoods"]
+        getAllCategory: builder.query({
+            query: () => '/category/get-all-category',
+            providesTags: ["getAllCategory"]
         }),
-        getFoodsByMenu: builder.query({
-            query: (menu) => `/foods/getfoodsbymenu/${menu}`,
-        }),
-        getFoodsById: builder.query({
-            query: (foodId) => `/foods/getfoodsbyid/${foodId}`,
+        getCategoryByName: builder.query({
+            query: (category) => `/category/categoryname/${category}`,
         }),
 
-        addFood: builder.mutation({
+        addCategory: builder.mutation({
             query: (data) => ({
-                url: "/foods/add-food-item",
+                url: "/category/add-category-item",
                 method: "POST",
                 body: data,
             }),
-            invalidatesTags: ["getAllfoods"]
+            invalidatesTags: ["getAllCategory"]
         }),
 
         // deleteProduct: (builder).mutation({
@@ -40,4 +37,4 @@ export const foodApi = apiSlice.injectEndpoints({
 
     })
 })
-export const { useGetFoodsQuery, useAddFoodMutation, useGetFoodsByMenuQuery, useGetFoodsByIdQuery } = foodApi;
+export const { useGetAllCategoryQuery, useAddCategoryMutation, useGetCategoryByNameQuery } = categoryApi;
