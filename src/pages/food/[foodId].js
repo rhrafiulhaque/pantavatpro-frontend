@@ -36,7 +36,9 @@ const ProductDetails = () => {
     return (
         <div className='container mx-auto'>
             <div className=' grid lg:grid-cols-2 gap-6 mt-10'>
-                <div className={`w-full`}> <img src={image} className="object-fill" alt='' /></div>
+                <div className='h-[520px] w-full object-fill'>
+                    <img src={image} className="h-[520px] w-full  object-contain" alt='' />
+                </div>
                 <div className='space-y-2'>
                     <h1 className='uppercase text-2xl font-medium'>{foodTitle}</h1>
                     <div className='flex items-center space-x-2'>

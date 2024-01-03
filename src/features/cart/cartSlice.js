@@ -9,30 +9,30 @@ export const cartSlice = createSlice({
     initialState,
     reducers: {
         addCart: (state, action) => {
-            const productIndex = state.cart.findIndex((product) => product.productName === action.payload.productName)
-            if (productIndex !== -1) {
-                state.cart[productIndex].quantity += action.payload.quantity;
+            const foodIndex = state.cart.findIndex((food) => food.foodTitle === action.payload.foodTitle)
+            if (foodIndex !== -1) {
+                state.cart[foodIndex].quantity += action.payload.quantity;
             } else {
                 state.cart.push(action.payload);
             }
         },
         removeCart: (state, action) => {
-            const products = state.cart.filter((product) => product.productName !== action.payload)
-            state.cart = products
+            const foods = state.cart.filter((food) => food.foodTitle !== action.payload)
+            state.cart = foods
         },
 
 
         increaseQuantity: (state, action) => {
-            const productIndex = state.cart.findIndex((product) => product.productName === action.payload)
-            if (productIndex !== -1) {
-                state.cart[productIndex].quantity = state.cart[productIndex].quantity + 1;
+            const foodIndex = state.cart.findIndex((food) => food.foodTitle === action.payload)
+            if (foodIndex !== -1) {
+                state.cart[foodIndex].quantity = state.cart[foodIndex].quantity + 1;
             }
         },
         decreaseQuantity: (state, action) => {
             console.log(action.payload)
-            const productIndex = state.cart.findIndex((product) => product.productName === action.payload)
-            if (productIndex !== -1) {
-                state.cart[productIndex].quantity = state.cart[productIndex].quantity - 1;
+            const foodIndex = state.cart.findIndex((food) => food.foodTitle === action.payload)
+            if (foodIndex !== -1) {
+                state.cart[foodIndex].quantity = state.cart[foodIndex].quantity - 1;
             }
         }
     },

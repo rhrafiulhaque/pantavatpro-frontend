@@ -1,7 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
+import { addCart } from '@/features/cart/cartSlice';
 import { useGetFoodsByMenuQuery } from '@/features/food/foodApi';
 import { useState } from 'react';
-import PrimaryButton from '../PrimaryButton';
+import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import ProductRatings from '../productRatings';
 import Loading from '../shared/Loading';
 
@@ -10,6 +12,14 @@ const FullMenu = () => {
     const [menu, setMenu] = useState('Breakfast')
     const { data: foods, isLoading, isError, error, } = useGetFoodsByMenuQuery(menu);
 
+    const dispatch = useDispatch()
+
+    const handleAddToCart = (food) => {
+        const { _id, foodTitle, price, image } = food;
+        const quantity = 1;
+        dispatch(addCart({ _id, foodTitle, quantity, price, image }))
+        toast.success(`${foodTitle} added to Cart`)
+    }
 
     if (isLoading) {
         return <Loading />
@@ -24,18 +34,18 @@ const FullMenu = () => {
     if (!isLoading && !isError && foods?.data?.length > 0) {
         content = foods.data.map((food) => (
             <div key={food.id} className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                <a href="#">
+                <a href={`/food/${food._id}`}>
                     <img className='w-full h-[250px] object-fill ' src={food.image} alt="Image" />
                 </a>
                 <div className="p-5">
-                    <a href="#">
+                    <a href={`/food/${food._id}`}>
                         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{food.foodTitle}</h5>
                     </a>
                     <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{food.description}</p>
                     <span><ProductRatings ratings={5} /> (600) Reviews</span>
                     <div className='flex justify-between mt-4'>
                         <h1 className='font-bold text-2xl'>${food.price}</h1>
-                        <PrimaryButton message={'Order Now'} />
+                        <button className='px-3 py-2 bg-primary text-white rounded-3xl border border-primary hover:bg-transparent hover:text-primary transition duration-300  ' onClick={() => handleAddToCart(food)}>Add to Cart</button>
 
 
                     </div>

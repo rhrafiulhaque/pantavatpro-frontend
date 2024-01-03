@@ -4,13 +4,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import logo from '../../assets/logo.png';
 import UserFlip from '../homePage/UserFlip';
 
 const Navbar = () => {
     const { status } = useAuth();
-    console.log(status)
     const [haveUser, setHaveUser] = useState(false)
+    const cartFood = useSelector((state) => state.cart.cart)
 
     useEffect(() => {
         if (status) {
@@ -38,7 +39,14 @@ const Navbar = () => {
             </div>
 
             <div className='flex  gap-6 items-center'>
-                <FontAwesomeIcon icon={faCartShopping} className='text-2xl' />
+                <Link href={'/cart'} className='text-center text-gray-500   transition relative'>
+                    <span className='text-2xl'>
+                        <FontAwesomeIcon icon={faCartShopping} />
+                    </span>
+                    <div className='text-xs leading-3'>Cart</div>
+                    <span className='absolute right-0 -top-1 w-5 h-5 rounded-full bg-[#FD3D57] flex items-center justify-center text-white text-xs'>{cartFood.length}</span>
+
+                </Link>
                 {
                     haveUser ? <UserFlip /> : <>
                         <button className='px-4 py-2 border border-[#FF5331] rounded-full font-semibold hover:bg-[#FF5331] hover:text-white transition duration-300 '><Link href="/login">Login</Link></button>

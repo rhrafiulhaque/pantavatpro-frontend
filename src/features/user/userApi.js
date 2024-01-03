@@ -16,9 +16,12 @@ export const userApi = apiSlice.injectEndpoints({
                 body: data,
             }),
         }),
+        getUserByEmail: (builder).query({
+            query: (email) => `/users/get-user-by-email/${email}`,
+        }),
 
 
 
     })
 })
-export const { useCreateUserMutation, useLogInMutation } = userApi;
+export const { useCreateUserMutation, useLogInMutation, useGetUserByEmailQuery } = userApi;
