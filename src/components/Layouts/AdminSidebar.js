@@ -29,7 +29,7 @@ const AdminSidebar = () => {
                     <h1>Dashboard</h1>
                 </Link>
                 <Link
-                    href="/userdashboard/editprofile"
+                    href="/admin/editprofile"
                     className="flex gap-4 items-center mt-4  "
                 >
                     <FontAwesomeIcon
@@ -58,13 +58,13 @@ const AdminSidebar = () => {
                     />
                     <h1>Add Category</h1>
                 </Link>
-                <a href="" className="flex gap-4 items-center mt-4  ">
+                <Link href="/admin/allorders" className="flex gap-4 items-center mt-4  ">
                     <FontAwesomeIcon
                         icon={faGift}
                         className="p-4 rounded-full bg-[#F3E6EC] text-[#ED0027]"
                     />
                     <h1>All Orders</h1>
-                </a>
+                </Link>
                 <a href="" className="flex gap-4 items-center mt-4  ">
                     <FontAwesomeIcon
                         icon={faStar}

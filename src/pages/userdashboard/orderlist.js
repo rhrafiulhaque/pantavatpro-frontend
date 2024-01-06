@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+import Link from "next/link";
 import rice from "../../assets/r1.png";
 
 const OrderList = () => {
@@ -10,7 +12,7 @@ const OrderList = () => {
               <img className="w-20" src={rice} alt="" />
             </div>
             <Link
-              to={`/getorderdetails`}
+              href={`/getorderdetails`}
               className=" border border-primary rounded-sm transition duration-300 h-10 px-4 py-2 bg-transparent text-primary hover:bg-primary hover:text-white"
             >
               View Order
@@ -93,7 +95,7 @@ const OrderList = () => {
             </p>
             <div className="mt-6">
               <Link
-                to={`/getorderdetails/${order._id}`}
+                href={`/getorderdetails/${order._id}`}
                 className="border border-primary rounded-sm transition duration-300 h-10 px-4 py-2 bg-transparent text-primary hover:bg-primary hover:text-white"
               >
                 View Order

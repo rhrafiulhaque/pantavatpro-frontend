@@ -18,10 +18,20 @@ export const userApi = apiSlice.injectEndpoints({
         }),
         getUserByEmail: (builder).query({
             query: (email) => `/users/get-user-by-email/${email}`,
+            providesTags: (_) => ["getUserByEmail"]
+        }),
+
+        updateProfile: builder.mutation({
+            query: (data) => ({
+                url: "/users/update-user",
+                method: "PATCH",
+                body: data,
+            }),
+            invalidatesTags: (_) => ["getUserByEmail"]
         }),
 
 
 
     })
 })
-export const { useCreateUserMutation, useLogInMutation, useGetUserByEmailQuery } = userApi;
+export const { useCreateUserMutation, useLogInMutation, useGetUserByEmailQuery, useUpdateProfileMutation } = userApi;

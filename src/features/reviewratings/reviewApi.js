@@ -1,0 +1,38 @@
+import { apiSlice } from "../api/apiSlice";
+
+export const reviewApi = apiSlice.injectEndpoints({
+    endpoints: (builder) => ({
+        getReviewByFoodId: builder.query({
+            query: (foodId) => `/reviews/getReview/${foodId}`,
+            providesTags: ["getAllReviews"]
+        }),
+
+        addReview: builder.mutation({
+            query: (data) => ({
+                url: "/reviews/add-review",
+                method: "POST",
+                body: data,
+            }),
+            invalidatesTags: ["getAllReviews"]
+        }),
+
+
+        // deleteProduct: (builder).mutation({
+        //     query: (id) => ({
+        //         url: `/products/${id}`,
+        //         method: 'DELETE'
+        //     }),
+        //     invalidatesTags: ['productList']
+        // }),
+        // updateProduct: builder.mutation({
+        //     query: (data) => ({
+        //         url: "/products/updateproduct",
+        //         method: "PATCH",
+        //         body: data,
+        //     }),
+        //     invalidatesTags: ["productList", "getProduct"]
+        // }),
+
+    })
+})
+export const { useAddReviewMutation, useGetReviewByFoodIdQuery } = reviewApi;

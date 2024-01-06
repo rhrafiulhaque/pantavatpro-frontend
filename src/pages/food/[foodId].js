@@ -1,8 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import RootLayout from '@/components/Layouts/RootLayout';
+import AddReviews from '@/components/Review/AddReviews';
 import ProductRatings from '@/components/productRatings';
 import Loading from '@/components/shared/Loading';
 import { useGetFoodsByIdQuery } from '@/features/food/foodApi';
+import { useGetReviewByFoodIdQuery } from '@/features/reviewratings/reviewApi';
 import { faCartShopping, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from 'next/router';
@@ -14,8 +16,11 @@ const ProductDetails = () => {
     const { foodId } = router.query;
     const dispatch = useDispatch();
     const { data: food, isLoading } = useGetFoodsByIdQuery(foodId)
+    const { data: reviews, isLoading: reviewLoading } = useGetReviewByFoodIdQuery(foodId)
+    console.log(reviews)
+
     const { averageRating, category, description, foodTitle, image, stock, meal, price } = food?.data || {}
-    console.log(food)
+
 
     const [quantity, setQuantity] = useState(1);
 
@@ -85,6 +90,15 @@ const ProductDetails = () => {
                 </div>
 
             </div>
+
+
+
+
+
+
+
+
+            <AddReviews />
             {/* <RelatedProducts category={category} /> */}
         </div>
     );

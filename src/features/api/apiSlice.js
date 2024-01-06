@@ -9,12 +9,14 @@ export const apiSlice = createApi({
         prepareHeaders: (headers) => {
             const token = localStorage.getItem("accessToken");
             if (token) {
-                headers.set("authorization", `Bearer ${token}`);
+                headers.set("authorization", `${token}`);
             }
             return headers;
-        }
+        },
+
+        credentials: "include",
     }),
-    tagTypes: [],
+    tagTypes: ["getUserByEmail", "getAllOrders", "getAllReviews"],
     endpoints: (builder) => ({})
 
 });

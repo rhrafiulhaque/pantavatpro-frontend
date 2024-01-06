@@ -77,10 +77,7 @@ const Login = () => {
                                         value: true,
                                         message: 'Password is Required'
                                     },
-                                    minLength: {
-                                        value: 6,
-                                        message: 'Please input the password 6 digit or long'
-                                    }
+
                                 })
                                 }
                             />

@@ -2,10 +2,10 @@ import { apiSlice } from "../api/apiSlice";
 
 export const orderApi = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
-        // getFoods: builder.query({
-        //     query: () => '/foods/get-all-foods',
-        //     providesTags: ["getAllfoods"]
-        // }),
+        getAllOrders: builder.query({
+            query: () => '/orders/getAllOrders',
+            providesTags: ["getAllOrders"]
+        }),
 
         addOrder: builder.mutation({
             query: (data) => ({
@@ -13,7 +13,17 @@ export const orderApi = apiSlice.injectEndpoints({
                 method: "POST",
                 body: data,
             }),
+            invalidatesTags: ["getAllOrders"]
         }),
+        updateDeliveryStatus: builder.mutation({
+            query: (data) => ({
+                url: "/orders/update-delivery-status",
+                method: "PATCH",
+                body: data,
+            }),
+            invalidatesTags: ["getAllOrders"]
+        }),
+
 
         // deleteProduct: (builder).mutation({
         //     query: (id) => ({
@@ -33,4 +43,4 @@ export const orderApi = apiSlice.injectEndpoints({
 
     })
 })
-export const { useGetFoodsQuery, useAddFoodMutation, useGetFoodsByMenuQuery, useGetFoodsByIdQuery, useAddOrderMutation } = orderApi;
+export const { useGetFoodsQuery, useAddFoodMutation, useGetFoodsByMenuQuery, useGetFoodsByIdQuery, useUpdateDeliveryStatusMutation, useAddOrderMutation, useGetAllOrdersQuery } = orderApi;
