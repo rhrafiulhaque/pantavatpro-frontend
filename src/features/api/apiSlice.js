@@ -5,7 +5,7 @@ export const apiSlice = createApi({
     reducerPath: 'api',
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:5000/api/v1/',
-        // baseUrl: 'https://kinbaanaki-backend.vercel.app/api/v1/',
+        // baseUrl: 'https://pantavat-backend.vercel.app/api/v1/',
         prepareHeaders: (headers) => {
             const token = localStorage.getItem("accessToken");
             if (token) {
@@ -13,8 +13,6 @@ export const apiSlice = createApi({
             }
             return headers;
         },
-
-        credentials: "include",
     }),
     tagTypes: ["getUserByEmail", "getAllOrders", "getAllReviews"],
     endpoints: (builder) => ({})

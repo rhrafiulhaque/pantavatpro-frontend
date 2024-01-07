@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import RootLayout from "@/components/Layouts/RootLayout";
+import CartLayout from "@/components/Layouts/CartLayout";
 import { decreaseQuantity, increaseQuantity, removeCart } from "@/features/cart/cartSlice";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,7 +10,6 @@ const CartSection = () => {
     const cartFood = useSelector((state) => state.cart.cart)
     const dispatch = useDispatch()
     const handleIncreaseQuantity = (foodTitle) => {
-        console.log(foodTitle)
         dispatch(increaseQuantity(foodTitle))
     }
 
@@ -86,5 +85,5 @@ export default CartSection;
 
 
 CartSection.getLayout = function getLayout(page) {
-    return <RootLayout>{page}</RootLayout>;
+    return <CartLayout>{page}</CartLayout>;
 };

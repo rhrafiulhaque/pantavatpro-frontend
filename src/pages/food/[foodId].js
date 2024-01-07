@@ -1,25 +1,24 @@
 /* eslint-disable @next/next/no-img-element */
 import RootLayout from '@/components/Layouts/RootLayout';
 import AddReviews from '@/components/Review/AddReviews';
+import ReviewListOfProduct from '@/components/homePage/ReviewListOfProduct';
 import ProductRatings from '@/components/productRatings';
 import Loading from '@/components/shared/Loading';
+import { addCart } from '@/features/cart/cartSlice';
 import { useGetFoodsByIdQuery } from '@/features/food/foodApi';
-import { useGetReviewByFoodIdQuery } from '@/features/reviewratings/reviewApi';
 import { faCartShopping, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 
 const ProductDetails = () => {
     const router = useRouter();
     const { foodId } = router.query;
     const dispatch = useDispatch();
     const { data: food, isLoading } = useGetFoodsByIdQuery(foodId)
-    const { data: reviews, isLoading: reviewLoading } = useGetReviewByFoodIdQuery(foodId)
-    console.log(reviews)
-
-    const { averageRating, category, description, foodTitle, image, stock, meal, price } = food?.data || {}
+    const { averageRating, ratingsQuantity, category, description, foodTitle, image, stock, meal, price } = food?.data || {}
 
 
     const [quantity, setQuantity] = useState(1);
@@ -30,8 +29,10 @@ const ProductDetails = () => {
 
 
 
-    const handleAddToCart = (_id, productName, quantity, price, img) => {
-
+    const handleAddToCart = () => {
+        const { _id, foodTitle, price, image } = food.data;
+        dispatch(addCart({ _id, foodTitle, quantity, price, image }))
+        toast.success(`${foodTitle} added to Cart`)
     }
     const handleBuyNow = async (_id, productName, quantity, price, img) => {
 
@@ -47,8 +48,8 @@ const ProductDetails = () => {
                 <div className='space-y-2'>
                     <h1 className='uppercase text-2xl font-medium'>{foodTitle}</h1>
                     <div className='flex items-center space-x-2'>
-                        <ProductRatings ratings={5} />
-                        <span className='flex items-center justify-center text-sm text-gray-500'> 150 reviews</span>
+                        <ProductRatings ratings={averageRating} />
+                        <span className='flex items-center justify-center text-sm text-gray-500'> {ratingsQuantity} reviews</span>
                     </div>
 
                     <div className='space-y-3 '>
@@ -79,7 +80,7 @@ const ProductDetails = () => {
                         {/* Cart and Buythings Start  */}
                         <div className='flex  gap-6'>
                             <button className='text-uppercase px-8 py-3 border border-gray-800 text-gray-800 rounded hover:border-primary hover:text-primary transition disabled:hover:cursor-not-allowed' disabled={stock === 0 || stock === undefined}  > <FontAwesomeIcon icon={faHeart} />  Buy Now</button>
-                            <button className=' flex justify-center items-center text-uppercase px-8 py-3 border-primary border bg-primary text-white rounded-md hover:bg-white hover:text-primary transition disabled:hover:bg-none disabled:text-white disabled:hover:cursor-not-allowed disabled:bg-red-400' disabled={stock === 0 || stock === undefined} > <FontAwesomeIcon icon={faCartShopping} className="mr-2" /> Add to Cart</button>
+                            <button className=' flex justify-center items-center text-uppercase px-8 py-3 border-primary border bg-primary text-white rounded-md hover:bg-white hover:text-primary transition disabled:hover:bg-none disabled:text-white disabled:hover:cursor-not-allowed disabled:bg-red-400' disabled={stock === 0 || stock === undefined} onClick={() => handleAddToCart()} > <FontAwesomeIcon icon={faCartShopping} className="mr-2" /> Add to Cart</button>
 
 
                         </div>
@@ -96,7 +97,7 @@ const ProductDetails = () => {
 
 
 
-
+            <ReviewListOfProduct foodId={foodId} />
 
             <AddReviews />
             {/* <RelatedProducts category={category} /> */}

@@ -15,6 +15,7 @@ const AdminProfile = () => {
             address: e.target.address.value,
             contactNo: e.target.contactNo.value,
             district: e.target.district.value,
+            name: e.target.name.value,
             email: user.email
         }
         await updateProfile(data)

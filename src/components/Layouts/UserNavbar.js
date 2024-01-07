@@ -1,4 +1,4 @@
-import { faCartShopping, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import logo from '../../assets/logo.png';
@@ -7,7 +7,7 @@ const Navbar = () => {
     return (
         <div className='container mx-auto mt-5 flex justify-between align-middle content-center items-center bg-[#0F1217] p-4 rounded-xl'>
             <a href="\"> <Image src={logo} alt="Logo" className='w-20 ' /></a>
-            
+
 
             <div>
                 <div className='w-[434px] relative flex'>
@@ -17,7 +17,7 @@ const Navbar = () => {
                     </span>
                 </div>
             </div>
-            
+
         </div>
     );
 };

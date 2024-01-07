@@ -1,22 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
 import { addCart } from '@/features/cart/cartSlice';
-import { useGetFoodsQuery } from '@/features/food/foodApi';
-import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useGetSearchFoodQuery } from '@/features/food/foodApi';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import ProductRatings from '../productRatings';
 import Loading from '../shared/Loading';
 
-const OurDishes = () => {
+const FilteredProduct = () => {
     let content = null;
-    const [page, setPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(1);
-    const [items, setItems] = useState([]);
-    const limitPerPage = 4;
-
-    const { data: foods, isLoading, error, isError } = useGetFoodsQuery({ page, limit: limitPerPage });
-
-
+    const keyword = useSelector((state) => state.filter.searchKeyword)
+    const { data: foods, isLoading, error, isError } = useGetSearchFoodQuery(keyword);
     const dispatch = useDispatch()
 
     const handleAddToCart = (food) => {
@@ -26,31 +19,17 @@ const OurDishes = () => {
         toast.success(`${foodTitle} added to Cart`)
     }
 
-    const handleLoadMore = () => {
-        if (page < totalPages) {
-            setPage(page + 1);
-        }
-    };
-
-    useEffect(() => {
-        if (foods) {
-            setTotalPages(Math.ceil(foods?.meta?.total / limitPerPage));
-            setItems((prevItems) => [...prevItems, ...foods.data]);
-        }
-    }, [foods]);
-
-
     if (isLoading) {
         return <Loading />
     }
     if (!isLoading && isError) {
-        content = <p className='text-red-500 font-semibold'>There have an problem to fetch the Foods</p>
+        content = <p className='text-red-500 font-semibold'>{error.data.message}</p>
     }
     if (!isLoading && !isError && foods?.data?.length === 0) {
-        content = <p className='text-red-500 font-semibold'>There have no Foods</p>
+        content = <p className='text-red-500 font-semibold'>There have no Foods of {keyword} </p>
     }
     if (!isLoading && !isError && foods?.data?.length > 0) {
-        content = items.map((food) => (
+        content = foods.data.map((food) => (
             <div key={food.id} className="max-w-sm bg-white border border-gray-200 hover:scale-105 transition duration-300 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                 <a href={`/food/${food._id}`}>
                     <img className='w-full h-[220px] object-cover'
@@ -81,18 +60,8 @@ const OurDishes = () => {
             <div className=' grid grid-cols-4 gap-5 mt-8'>
                 {content}
             </div>
-            {page < totalPages ? (
-                <button
-                    className='mt-4 px-4 py-2 bg-primary text-white rounded-full border border-primary hover:bg-transparent hover:text-primary transition duration-300'
-                    onClick={handleLoadMore}
-                >
-                    Load More
-                </button>
-            ) : (
-                items.length > 0 && <button className='mt-4 px-4 py-2 bg-transparent text-primary rounded-full border border-primary'>No Food for Load</button>
-            )}
         </div>
     );
 };
 
-export default OurDishes;
+export default FilteredProduct;

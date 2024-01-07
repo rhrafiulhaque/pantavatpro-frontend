@@ -1,10 +1,11 @@
+import { resetKeyword, setKeyword } from '@/features/filter/filterSlice';
 import useAuth from '@/hooks/useAuth';
 import { faCartShopping, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import logo from '../../assets/logo.png';
 import UserFlip from '../homePage/UserFlip';
 
@@ -12,6 +13,9 @@ const Navbar = () => {
     const { status } = useAuth();
     const [haveUser, setHaveUser] = useState(false)
     const cartFood = useSelector((state) => state.cart.cart)
+    const dispatch = useDispatch()
+
+
 
     useEffect(() => {
         if (status) {
@@ -21,7 +25,7 @@ const Navbar = () => {
     }, [status])
     return (
         <div className='container mx-auto mt-5 flex justify-between align-middle content-center items-center'>
-            <a href="\"> <Image src={logo} alt="Logo" className='w-20 ' /></a>
+            <a href="\" onClick={() => dispatch(resetKeyword())}> <Image src={logo} alt="Logo" className='w-20 ' /></a>
             <div className='flex gap-4 justify-center font-semibold '>
                 <a className='text-[#F54748] font-bold underline ' href="">Home</a>
                 <a className='text-[#A19B9E]' href="">Menus</a>
@@ -31,7 +35,7 @@ const Navbar = () => {
             </div>
             <div>
                 <div className='w-[434px] relative flex'>
-                    <input type="text" placeholder="Search" className=" w-full border border-none rounded-lg p-2 bg-[#F8F2F2] focus:border-[#F68C4B]" />
+                    <input onChange={(e) => dispatch(setKeyword(e.target.value))} type="text" placeholder="Search" className=" w-full border border-none rounded-lg p-2 bg-[#F8F2F2] focus:border-[#F68C4B]" />
                     <span className='absolute right-3 top-1 text-lg text-gray-400'>
                         <FontAwesomeIcon icon={faSearch} />
                     </span>

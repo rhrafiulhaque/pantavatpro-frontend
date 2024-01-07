@@ -1,6 +1,7 @@
 import RootLayout from '@/components/Layouts/RootLayout';
 import Loading from '@/components/shared/Loading';
 import { useCreateUserMutation } from '@/features/user/userApi';
+import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
@@ -10,7 +11,7 @@ const RegisterForm = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const [createUser, { isLoading, isSuccess, isError, error }] = useCreateUserMutation()
 
-
+    const router = useRouter()
 
 
     const onSubmit = async (data) => {
@@ -20,9 +21,10 @@ const RegisterForm = () => {
 
     useEffect(() => {
         if (isSuccess) {
-            toast.success('User Register Successfully')
+            toast.success('User Register Successfully. Please Login')
+            router.push('/login')
         }
-    }, [isSuccess])
+    }, [isSuccess, router])
 
     if (isLoading) {
         return <Loading />

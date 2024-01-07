@@ -1,4 +1,7 @@
 import UserDashboardLayout from "@/components/Layouts/UserDashboardLayout";
+import Loading from "@/components/shared/Loading";
+import { useGetOrderlistByEmailQuery } from "@/features/order/orderApi";
+import useAuth from "@/hooks/useAuth";
 import {
   faBoxTissue,
   faBoxes,
@@ -8,6 +11,12 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const UserDashboard = () => {
+  const { user } = useAuth()
+  const email = user.email
+  const { data: orderList, isLoading: orderLoading } = useGetOrderlistByEmailQuery({ email })
+  if (orderLoading) {
+    return <Loading />
+  }
   return (
     <div>
       <div className="py-8">
@@ -22,7 +31,7 @@ const UserDashboard = () => {
             className="text-7xl border rounded-full border-primary px-5 py-4 my-4 text-primary hover:text-white hover:bg-primary duration-300 transition  "
             icon={faBoxes}
           />
-          <h1 className="text-2xl font-bold">18</h1>
+          <h1 className="text-2xl font-bold">{orderList?.data?.length}</h1>
           <p className="text-xl">Orders</p>
         </div>
 

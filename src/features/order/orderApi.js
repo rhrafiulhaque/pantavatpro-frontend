@@ -3,8 +3,12 @@ import { apiSlice } from "../api/apiSlice";
 export const orderApi = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getAllOrders: builder.query({
-            query: () => '/orders/getAllOrders',
+            query: ({ page, limit }) => `/orders/getAllOrders?page=${page}&limit=${limit}`,
             providesTags: ["getAllOrders"]
+        }),
+        getOrderlistByEmail: builder.query({
+            query: ({ email, page = 1, limit = 100 }) => `/orders/getOrderListByEmail/${email}?page=${page}&limit=${limit}`,
+            providesTags: ["getOrderlistByEmail"]
         }),
 
         addOrder: builder.mutation({
@@ -43,4 +47,4 @@ export const orderApi = apiSlice.injectEndpoints({
 
     })
 })
-export const { useGetFoodsQuery, useAddFoodMutation, useGetFoodsByMenuQuery, useGetFoodsByIdQuery, useUpdateDeliveryStatusMutation, useAddOrderMutation, useGetAllOrdersQuery } = orderApi;
+export const { useGetFoodsQuery, useAddFoodMutation, useGetFoodsByMenuQuery, useGetFoodsByIdQuery, useGetOrderlistByEmailQuery, useUpdateDeliveryStatusMutation, useAddOrderMutation, useGetAllOrdersQuery } = orderApi;

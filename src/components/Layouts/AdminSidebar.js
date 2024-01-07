@@ -1,9 +1,12 @@
+/* eslint-disable @next/next/no-html-link-for-pages */
+import { removeFromLocalStorage } from "@/utils/local-storage";
 import {
     faBowlFood,
     faCalculator,
     faGift,
     faList,
     faLock,
+    faRectangleList,
     faStar,
     faUser
 } from "@fortawesome/free-solid-svg-icons";
@@ -13,6 +16,10 @@ import Link from "next/link";
 import avatar from "../../assets/img/avatar.png";
 
 const AdminSidebar = () => {
+    const logOut = () => {
+        removeFromLocalStorage('accessToken')
+    }
+
     return (
         <div className="bg-[#F4F4F6] rounded-xl">
             <div className="flex items-center flex-col space-y-2 pt-8 border-b-slate-700">
@@ -49,6 +56,16 @@ const AdminSidebar = () => {
                     <h1>Add Food</h1>
                 </Link>
                 <Link
+                    href="/admin/foodlist"
+                    className="flex gap-4 items-center mt-4  "
+                >
+                    <FontAwesomeIcon
+                        icon={faRectangleList}
+                        className="p-4 rounded-full bg-[#F3E6EC] text-[#ED0027]"
+                    />
+                    <h1>FoodList</h1>
+                </Link>
+                <Link
                     href="/admin/addcategory"
                     className="flex gap-4 items-center mt-4  "
                 >
@@ -65,19 +82,19 @@ const AdminSidebar = () => {
                     />
                     <h1>All Orders</h1>
                 </Link>
-                <a href="" className="flex gap-4 items-center mt-4  ">
+                <a href="/admin/reviewlist" className="flex gap-4 items-center mt-4  ">
                     <FontAwesomeIcon
                         icon={faStar}
                         className="p-4 rounded-full bg-[#F3E6EC] text-[#ED0027]"
                     />
                     <h1>All Reviews</h1>
                 </a>
-                <a href="" className="flex gap-4 items-center mt-4  ">
+                <a href="/" onClick={logOut} className="flex gap-4 items-center mt-4  ">
                     <FontAwesomeIcon
                         icon={faLock}
                         className="p-4 rounded-full bg-[#F3E6EC] text-[#ED0027]"
                     />
-                    <h1>Logout</h1>
+                    Logout
                 </a>
             </div>
         </div>

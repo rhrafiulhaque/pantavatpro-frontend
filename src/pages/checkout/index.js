@@ -26,7 +26,7 @@ const Checkout = () => {
             setValue("name", userDetails.data.name || "");
             setValue("address", userDetails.data.address || "");
             setValue("district", userDetails.data.district || "");
-            setValue("phonenumber", userDetails.data.phonenumber || "");
+            setValue("contactNo", userDetails.data.contactNo || "");
             setValue("email", userDetails.data.email || "");
         }
     }, [userDetails, setValue]);
@@ -144,7 +144,7 @@ const Checkout = () => {
                             <label className='text-gray-600 mb-2 block'>Phone Number <span className='text-red-600'>*</span> </label>
                             <input type="number" className='block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:border-primary placeholder-gray-400'
                                 {
-                                ...register('phonenumber', {
+                                ...register('contactNo', {
                                     required: {
                                         value: true,
                                         message: 'Phone Number is Required'
@@ -154,8 +154,8 @@ const Checkout = () => {
                                 }
                             />
                             <label class="label">
-                                {errors.phonenumber?.type === 'required' && <span class="label-text-alt text-red-500">{errors.phonenumber.message}</span>}
-                                {errors.phonenumber?.type === 'pattern' && <span class="label-text-alt text-red-500">{errors.phonenumber.message}</span>}
+                                {errors.contactNo?.type === 'required' && <span class="label-text-alt text-red-500">{errors.contactNo.message}</span>}
+                                {errors.contactNo?.type === 'pattern' && <span class="label-text-alt text-red-500">{errors.contactNo.message}</span>}
                             </label>
                         </div>
                         <div>

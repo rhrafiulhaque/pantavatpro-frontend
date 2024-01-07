@@ -17,7 +17,7 @@ const AddReviews = () => {
     const router = useRouter()
     const foodId = router.query.foodId
     const { data: foodDetails, isLoading: foodDetailsLoading } = useGetFoodsByIdQuery(foodId)
-    const [addReview, { isLoading: reviewLoading, isSuccess: addReviewSuccess }] = useAddReviewMutation();
+    const [addReview, { isLoading: reviewLoading, isSuccess: addReviewSuccess, isError, error }] = useAddReviewMutation();
 
     const dispatch = useDispatch()
 
@@ -35,8 +35,14 @@ const AddReviews = () => {
     }
 
     useEffect(() => {
+        if (isError) {
+            toast.error(error.data.message)
+        }
+    }, [isError, error])
+
+    useEffect(() => {
         if (addReviewSuccess) {
-            toast.success("Review Sumitted Successfullly")
+            toast.success("Review Submitted Successfullly")
         }
     }, [addReviewSuccess])
     if (reviewLoading || foodDetailsLoading) {

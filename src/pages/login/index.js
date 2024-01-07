@@ -1,6 +1,7 @@
 import RootLayout from '@/components/Layouts/RootLayout';
 import Loading from '@/components/shared/Loading';
 import { useLogInMutation } from '@/features/user/userApi';
+import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
@@ -9,11 +10,15 @@ const Login = () => {
 
     const [logIn, { isSuccess, isError, error, isLoading }] = useLogInMutation()
 
-
+    const router = useRouter();
 
     const onSubmit = async (data) => {
         const userInfo = await logIn(data);
-        localStorage.setItem('accessToken', userInfo?.data?.data?.accessToken)
+        await localStorage.setItem('accessToken', userInfo?.data?.data?.accessToken)
+        if (userInfo?.data?.data?.accessToken) {
+            router.push('/')
+        }
+
     }
 
     useEffect(() => {

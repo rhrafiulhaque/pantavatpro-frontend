@@ -62,7 +62,7 @@ const Categories = () => {
                 >
                     <div className="absolute inset-0 bg-gray-900 bg-opacity-65"></div>
                     <div className="relative flex flex-col justify-end py-20 px-5 text-white flex-grow">
-                        <h1 className="text-5xl text-white">{food.foodTitle}</h1>
+                        <a href={`/food/${food._id}`} className="text-5xl text-white">{food.foodTitle}</a>
                         <h1 className="text-7xl text-white">${food.price}</h1>
                     </div>
                 </div>

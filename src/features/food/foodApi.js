@@ -3,14 +3,17 @@ import { apiSlice } from "../api/apiSlice";
 export const foodApi = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getFoods: builder.query({
-            query: () => '/foods/get-all-foods',
+            query: ({ page, limit }) => `/foods/get-all-foods?page=${page}&limit=${limit}`,
             providesTags: ["getAllfoods"]
         }),
         getFoodsByMenu: builder.query({
-            query: (menu) => `/foods/getfoodsbymenu/${menu}`,
+            query: ({ menu, page, limit }) => `/foods/getfoodsbymenu/${menu}?page=${page}&limit=${limit}`,
         }),
         getFoodsById: builder.query({
             query: (foodId) => `/foods/getfoodsbyid/${foodId}`,
+        }),
+        getSearchFood: builder.query({
+            query: (searchKeyword) => `/foods/getsearchfood/${searchKeyword}`,
         }),
 
         addFood: builder.mutation({
@@ -21,6 +24,17 @@ export const foodApi = apiSlice.injectEndpoints({
             }),
             invalidatesTags: ["getAllfoods"]
         }),
+
+        updateFood: builder.mutation({
+            query: (data) => ({
+                url: "/foods/updateFood",
+                method: "PATCH",
+                body: data,
+            }),
+            invalidatesTags: (_) => ["getUserByEmail"]
+        }),
+
+
 
         // deleteProduct: (builder).mutation({
         //     query: (id) => ({
@@ -40,4 +54,4 @@ export const foodApi = apiSlice.injectEndpoints({
 
     })
 })
-export const { useGetFoodsQuery, useAddFoodMutation, useGetFoodsByMenuQuery, useGetFoodsByIdQuery } = foodApi;
+export const { useGetFoodsQuery, useAddFoodMutation, useGetFoodsByMenuQuery, useGetFoodsByIdQuery, useGetSearchFoodQuery, useUpdateFoodMutation } = foodApi;
