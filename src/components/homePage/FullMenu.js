@@ -15,7 +15,6 @@ const FullMenu = () => {
     const [items, setItems] = useState([]);
     const limitPerPage = 4;
     const { data: foods, isLoading, isError, error, } = useGetFoodsByMenuQuery({ menu, page, limit: limitPerPage });
-    console.log(foods)
 
     const dispatch = useDispatch()
 

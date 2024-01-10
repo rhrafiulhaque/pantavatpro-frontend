@@ -13,7 +13,7 @@ import Loading from "../shared/Loading";
 
 const ReviewsSection = () => {
     const { data: reviewList, isLoading: reviewListLoading, isError: reviewListIsError } = useGetFeedBackQuery();
-    console.log(reviewList)
+    console.log('ddsfaf', reviewList)
 
     let content = ""
 
