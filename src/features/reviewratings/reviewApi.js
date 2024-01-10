@@ -10,6 +10,10 @@ export const reviewApi = apiSlice.injectEndpoints({
             query: () => `/reviews/getAllReview`,
             providesTags: ["getAllReviews"]
         }),
+        getFeedBack: builder.query({
+            query: () => `/reviews/getFeedback`,
+            providesTags: ["getAllReviews"]
+        }),
         getReviewsByUserEmail: builder.query({
             query: ({ email, page = 1, limit = 10 }) => `/reviews/getReviewsByUserEmail/${email}?page=${page}&limit=${limit}`,
             providesTags: ["getAllReviews"]
@@ -43,4 +47,4 @@ export const reviewApi = apiSlice.injectEndpoints({
 
     })
 })
-export const { useAddReviewMutation, useGetReviewByFoodIdQuery, useGetReviewsByUserEmailQuery, useGetAllReviewQuery } = reviewApi;
+export const { useAddReviewMutation, useGetReviewByFoodIdQuery, useGetReviewsByUserEmailQuery, useGetAllReviewQuery, useGetFeedBackQuery } = reviewApi;

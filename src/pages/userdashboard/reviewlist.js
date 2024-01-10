@@ -38,6 +38,7 @@ const ReviewList = () => {
                 <thead className='bg-gray-50 border-b-2 border-gray-200'>
                     <tr>
                         <th className='p-3 text-sm font-semibold tracking-wide text-left'></th>
+                        <th className='p-3 text-sm font-semibold tracking-wide text-left'>Food Title</th>
                         <th className='p-3 text-sm font-semibold tracking-wide text-left'>Ratings</th>
                         <th className='p-3 text-sm font-semibold tracking-wide text-left'>Review</th>
                     </tr>
@@ -49,6 +50,7 @@ const ReviewList = () => {
                             const _id = rev._id
                             return <tr key={rev.id} className='bg-white'>
                                 <th>{i + 1}</th>
+                                <td className='p-3 text-sm text-gray-700 whitespace-nowrap'>{rev.food.foodTitle}</td>
                                 <td className='p-3 text-sm text-gray-700 whitespace-nowrap'><ProductRatings key={rev._id} ratings={rev.rating} /></td>
                                 <td className='p-3 text-sm text-gray-700 whitespace-nowrap'>{rev.reviewText}</td>
 

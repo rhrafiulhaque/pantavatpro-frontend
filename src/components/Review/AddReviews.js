@@ -25,6 +25,7 @@ const AddReviews = () => {
         e.preventDefault()
         const data = {
             userEmail: user.email,
+            userName: user.name,
             rating,
             reviewText: review,
             food: foodDetails.data

@@ -24,11 +24,10 @@ const AdminSidebar = () => {
         <div className="bg-[#F4F4F6] rounded-xl">
             <div className="flex items-center flex-col space-y-2 pt-8 border-b-slate-700">
                 <Image src={avatar} alt="avatar" className="w-16" />
-                <h1 className=" font-semibold text-2xl ">David Warrior</h1>
-                <p className="font-semibold">Admin</p>
+                <h1 className=" font-semibold text-2xl ">Admin</h1>
             </div>
             <div className="grid grid-cols-1 pl-8 pt-8 ">
-                <Link href="/userdashboard" className="flex gap-4 items-center mt-4  ">
+                <Link href="/admin" className="flex gap-4 items-center mt-4  ">
                     <FontAwesomeIcon
                         icon={faCalculator}
                         className="p-4 rounded-full bg-[#F3E6EC] text-[#ED0027]"

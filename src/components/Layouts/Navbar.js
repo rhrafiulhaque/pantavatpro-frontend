@@ -6,15 +6,46 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link as ScrollLink, animateScroll } from 'react-scroll';
 import logo from '../../assets/logo.png';
 import UserFlip from '../homePage/UserFlip';
+
 
 const Navbar = () => {
     const { status } = useAuth();
     const [haveUser, setHaveUser] = useState(false)
     const cartFood = useSelector((state) => state.cart.cart)
     const dispatch = useDispatch()
-
+    const scrollToAboutMe = () => {
+        animateScroll.scrollTo('homeSection', {
+            duration: 800,
+            smooth: 'easeInOutQuart',
+        });
+        animateScroll.scrollTo('ourDishesSection', {
+            duration: 800,
+            smooth: 'easeInOutQuart',
+        });
+        animateScroll.scrollTo('categorySection', {
+            duration: 800,
+            smooth: 'easeInOutQuart',
+        });
+        animateScroll.scrollTo('menuSection', {
+            duration: 800,
+            smooth: 'easeInOutQuart',
+        });
+        animateScroll.scrollTo('feedBackSection', {
+            duration: 800,
+            smooth: 'easeInOutQuart',
+        });
+        animateScroll.scrollTo('surveySection', {
+            duration: 800,
+            smooth: 'easeInOutQuart',
+        });
+        animateScroll.scrollTo('ReserveTable', {
+            duration: 800,
+            smooth: 'easeInOutQuart',
+        });
+    };
 
 
     useEffect(() => {
@@ -26,13 +57,40 @@ const Navbar = () => {
     return (
         <div className='container mx-auto mt-5 flex justify-between align-middle content-center items-center'>
             <a href="\" onClick={() => dispatch(resetKeyword())}> <Image src={logo} alt="Logo" className='w-20 ' /></a>
-            <div className='flex gap-4 justify-center font-semibold '>
-                <a className='text-[#F54748] font-bold underline ' href="">Home</a>
-                <a className='text-[#A19B9E]' href="">Menus</a>
-                <a className='text-[#A19B9E]' href="">About Us</a>
-                <a className='text-[#A19B9E]' href="">Our Special</a>
-                <a className='text-[#A19B9E]' href="">Our Offer</a>
-            </div>
+            <ul className='flex gap-4 justify-center font-semibold '>
+                <li><a className='text-[#F54748] font-bold underline ' href="\">Home</a></li>
+                <li><ScrollLink
+                    to="ourDishesSection"
+                    spy={true}
+                    smooth={true}
+                    duration={800}
+                    className="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                    activeClass="active" // Add a class for the active link if needed
+                >
+                    <p className='text-[#A19B9E] cursor-pointer'> Our Dishes</p>
+                </ScrollLink></li>
+                <ScrollLink
+                    to="categorySection"
+                    spy={true}
+                    smooth={true}
+                    duration={800}
+                    className="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                    activeClass="active" // Add a class for the active link if needed
+                >
+                    <p className='text-[#A19B9E] cursor-pointer'> Category </p>
+                </ScrollLink>
+                <ScrollLink
+                    to="menuSection"
+                    spy={true}
+                    smooth={true}
+                    duration={800}
+                    className="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                    activeClass="active" // Add a class for the active link if needed
+                >
+                    <p className='text-[#A19B9E] cursor-pointer'> Menues </p>
+                </ScrollLink>
+
+            </ul>
             <div>
                 <div className='w-[434px] relative flex'>
                     <input onChange={(e) => dispatch(setKeyword(e.target.value))} type="text" placeholder="Search" className=" w-full border border-none rounded-lg p-2 bg-[#F8F2F2] focus:border-[#F68C4B]" />

@@ -75,7 +75,7 @@ const Categories = () => {
 
 
     return (
-        <div className='container mx-auto mt-14'>
+        <div className='container mx-auto mt-14' id="categorySection">
             <div className="text-center space-y-3">
                 <h1 className='text-7xl text-center font-bold mt-9'>Food Categories</h1>
                 <p className='text-xl'>Indulge in the exquisite flavors of our collection <br /> where each dish is a symphony of taste and innovation.</p>

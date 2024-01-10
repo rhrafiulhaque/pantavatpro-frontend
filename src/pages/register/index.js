@@ -166,7 +166,7 @@ const RegisterForm = () => {
                     </div>
                 </form>
 
-                <div className='mt-6 flex justify-center relative'>
+                {/* <div className='mt-6 flex justify-center relative'>
                     <div className=' text-gray-600 uppercase px-3 bg-white z-10 relative'>Or SignUp in with</div>
                     <div className=' absolute left-0 top-3 w-full border-b-2 border-gray-200'></div>
                 </div>
@@ -174,7 +174,7 @@ const RegisterForm = () => {
                 <div className='mt-6 flex justify-center items-center gap-4'>
 
                     <button className='w-1/2 py-2  text-center bg-yellow-600 text-white rounded uppercase font-roboto font-medium text-sm hover:bg-yellow-500 transition' onClick={() => signInWithGoogle()}>Google</button>
-                </div>
+                </div> */}
                 <p className='mt-4 text-gray-600 text-center'> Already Have an account? <a href={'/login'} className='cursor-pointer text-primary'> Login Now</a> </p>
             </div>
         </div>

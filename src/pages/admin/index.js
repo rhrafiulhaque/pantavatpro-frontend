@@ -22,8 +22,8 @@ const AdminDashboard = () => {
                         className="text-7xl border rounded-full border-primary px-5 py-4 my-4 text-primary hover:text-white hover:bg-primary duration-300 transition  "
                         icon={faBoxes}
                     />
-                    <h1 className="text-2xl font-bold">18</h1>
-                    <p className="text-xl">Orders</p>
+                    <h1 className="text-2xl font-bold">0</h1>
+                    <p className="text-xl">0</p>
                 </div>
 
                 <div className="shadow p-10 text-center">
@@ -31,7 +31,7 @@ const AdminDashboard = () => {
                         className="text-7xl border rounded-full border-primary px-5 py-4 my-4 text-primary hover:text-white hover:bg-primary duration-300 transition  "
                         icon={faDollar}
                     />
-                    <h1 className="text-2xl font-bold">$6533</h1>
+                    <h1 className="text-2xl font-bold">$0</h1>
                     <p className="text-xl">Total Spend</p>
                 </div>
 
@@ -40,7 +40,7 @@ const AdminDashboard = () => {
                         className="text-7xl border rounded-full border-primary px-5 py-4 my-4 text-primary hover:text-white hover:bg-primary duration-300 transition  "
                         icon={faBoxTissue}
                     />
-                    <h1 className="text-2xl font-bold">$9855</h1>
+                    <h1 className="text-2xl font-bold">$0</h1>
                     <p className="text-xl">Products Bought </p>
                 </div>
             </div>

@@ -66,7 +66,7 @@ const OurDishes = () => {
                     <span><ProductRatings ratings={food.averageRating} /> ({food.ratingsQuantity}) Reviews</span>
                     <div className='flex justify-between mt-4'>
                         <h1 className='font-bold text-2xl'>${food.price}</h1>
-                        <button className='px-3 py-2 bg-primary text-white rounded-3xl border border-primary hover:bg-transparent hover:text-primary transition duration-300  ' onClick={() => handleAddToCart(food)}>Add to Cart</button>
+                        <button className='px-3 py-2 bg-primary text-white rounded-3xl border border-primary hover:bg-transparent hover:text-primary transition duration-300 disabled:hover:bg-none disabled:text-white disabled:hover:cursor-not-allowed disabled:bg-red-400' disabled={food.stock === 0 || food.stock === undefined} onClick={() => handleAddToCart(food)}>Add to Cart</button>
                     </div>
                 </div>
             </div>
@@ -75,7 +75,7 @@ const OurDishes = () => {
     }
 
     return (
-        <div className='container mx-auto text-center'>
+        <div className='container mx-auto text-center' id='ourDishesSection'>
             <h1 className='text-7xl text-center font-bold mt-9'>Our Dishes</h1>
             <p className='text-xl'>From classic favorites to innovative new dishes <br /> something for everyone</p>
             <div className=' grid grid-cols-4 gap-5 mt-8'>

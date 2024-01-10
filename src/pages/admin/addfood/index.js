@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/jsx-key */
 import AdminDasboardLayout from '@/components/Layouts/AdminDashboardLayout';
 import Loading from '@/components/shared/Loading';
@@ -5,7 +6,6 @@ import { useGetAllCategoryQuery } from '@/features/category/categoryApi';
 import { useAddFoodMutation } from '@/features/food/foodApi';
 import { storage } from '@/firebase.init';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 import 'react-quill/dist/quill.snow.css';
@@ -164,7 +164,7 @@ const AddFood = () => {
                     {/* Image Preview  */}
                     {imagePreview && <div className='flex-shrink-0'>
 
-                        <Image src={imagePreview} width={48} height={48} className="h-48 object-contain" alt="product_image" />
+                        <img src={imagePreview} className=" w-[220px] object-contain" alt="product_image" />
                     </div>}
 
                 </div>

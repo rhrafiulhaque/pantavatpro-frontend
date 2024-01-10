@@ -4,6 +4,7 @@ import Loading from '../shared/Loading';
 
 const ReviewListOfProduct = ({ foodId }) => {
     const { data: reviews, isLoading, isError, error } = useGetReviewByFoodIdQuery(foodId)
+    console.log(reviews)
     let content = null;
     if (isLoading) {
         return <Loading />

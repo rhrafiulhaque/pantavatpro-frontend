@@ -13,7 +13,7 @@ const FullMenu = () => {
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [items, setItems] = useState([]);
-    const limitPerPage = 2;
+    const limitPerPage = 4;
     const { data: foods, isLoading, isError, error, } = useGetFoodsByMenuQuery({ menu, page, limit: limitPerPage });
     console.log(foods)
 
@@ -69,7 +69,7 @@ const FullMenu = () => {
                     <span><ProductRatings ratings={food.averageRating} /> ({food.ratingsQuantity}) Reviews</span>
                     <div className='flex justify-between mt-4'>
                         <h1 className='font-bold text-2xl'>${food.price}</h1>
-                        <button className='px-3 py-2 bg-primary text-white rounded-3xl border border-primary hover:bg-transparent hover:text-primary transition duration-300  ' onClick={() => handleAddToCart(food)}>Add to Cart</button>
+                        <button className='px-3 py-2 bg-primary text-white rounded-3xl border border-primary hover:bg-transparent hover:text-primary transition duration-300 disabled:hover:bg-none disabled:text-white disabled:hover:cursor-not-allowed disabled:bg-red-400' disabled={food.stock === 0 || food.stock === undefined} onClick={() => handleAddToCart(food)}>Add to Cart</button>
 
 
                     </div>
@@ -80,7 +80,7 @@ const FullMenu = () => {
     }
 
     return (
-        <div className='container mx-auto text-center'>
+        <div className='container mx-auto text-center' id='menuSection'>
             <h1 className='text-7xl text-center font-bold mt-9'>Full Menu</h1>
             <p className='text-xl'>From classic favorites to innovative new dishes, our menu has <br /> something for everyone</p>
 
